@@ -1,0 +1,100 @@
+<?php
+system("clear");
+error_reporting(0);
+const
+Webnya ="https://icucu.icu/doge/",
+Reff   ="https://icucu.icu/doge/ref/tqjpepbcghqp";
+unlink("icucu.php");
+//$line = str_repeat('-',50)."\n";
+function Run($u, $h = 0, $p = 0){
+	
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $u);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+	curl_setopt($ch, CURLOPT_COOKIE,TRUE);
+	curl_setopt($ch, CURLOPT_COOKIEFILE,"cookie");
+	curl_setopt($ch, CURLOPT_COOKIEJAR,"cookie");
+	if($p){
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $p);
+	}
+	if($h){
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
+	}
+	curl_setopt($ch, CURLOPT_HEADER, true);
+	$r = curl_exec($ch);
+	$c = curl_getinfo($ch);
+	if(!$c) return "Curl Error : ".curl_error($ch); else{
+		$hd = substr($r, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+		$bd = substr($r, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
+		curl_close($ch);
+		return array($hd,$bd)[1];
+	}
+}
+function timer($t){
+	$timr=time()+$t;
+	 while(true):
+	 print "\r                                       \r";
+	 $res=$timr-time();
+	 if($res < 1){break;}
+if($res==$res){
+
+}
+	 print "Please Wait ".date('i:s',$res);
+	 sleep(1);
+	 endwhile;
+}
+$h[] = "Host : ".Webnya;
+$h[] = "user-agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36";
+
+Run(Webnya.Reff,$h);
+/* LOGIN */
+$Wallet=file_get_contents("Wallet");
+if(!file_exists('Wallet')){
+      echo Oren_1."Input Wallet Dogecoin ".ctg_x1.White."\n";
+      $Wallet= trim(fgets(STDIN));
+      $save = fopen("Wallet", "w");
+      fwrite($save,$Wallet);
+      fclose($save);
+}
+
+$data = "address=$Wallet&test=";
+Run(Webnya,$h,$data); 
+banner();
+Efek(White.ctg_x."SCRYPT   : ICUCU\n");
+Efek(White.ctg_x."VERSION  : 2\n");
+Efek(White.ctg_x."DONATION : burungowl [Faucetpay]\n");
+Efek(White.ctg_x."NOTE    : ".Oren_2."SCRYPT 100% FREE NOT FOR SALE\n");
+print(line_2);
+$res=Run(Webnya,$h);
+$UserName = trim(explode('</',explode('<td class="tr-cc" colspan="2">',$res)[1])[0]);
+print("Welcome Back!           \n");
+print("Payout => ".$UserName."\n");
+print(line_2);
+
+$claim   = explode('"',explode('<a style="color: blue;" href="',$res)[1])[0];
+ulang:
+
+      $waktu =explode('and can',explode('<td class="tr-cc">',$res)[1])[0];
+      $Expired = explode('</td>',explode('<td class="tr-cc">',$res)[1])[0];
+      if($Expired=="Expired"){done();}
+      $url_claim = Run($claim,$h);
+      $time = explode('" style',explode('data-timer="',$url_claim)[1])[0];
+      timer($time);
+      if($waktu=="3 minutes"){done();}
+      if($waktu=="2 minutes"){done();}
+      if($waktu=="1 minutes"){done();}
+      $res=  Run($claim,$h);
+      $reward=explode('</div>',explode('20px;">',$res)[1])[0];
+      if($reward){
+            $potong=str_replace("was sent to your account in FaucetPay.io","SENT TO FAUCETPAY",$reward);
+            print(trim($potong)."\n");goto ulang;
+		}
+      else{done();} 
+
+function done(){print("Expired!!! Claim Shortlink to continue!!!\n");die();}
+?>
