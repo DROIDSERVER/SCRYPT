@@ -68,7 +68,7 @@ banner();
 Efek(White.ctg_x."SCRYPT   : ICUCU\n");
 Efek(White.ctg_x."VERSION  : 2\n");
 Efek(White.ctg_x."DONATION : burungowl [Faucetpay]\n");
-Efek(White.ctg_x."NOTE    : ".Oren_2."SCRYPT 100% FREE NOT FOR SALE\n");
+Efek(White.ctg_x."NOTE     : ".Oren_2."SCRYPT 100% FREE NOT FOR SALE\n");
 print(line_2);
 $res=Run(Webnya,$h);
 $UserName = trim(explode('</',explode('<td class="tr-cc" colspan="2">',$res)[1])[0]);
